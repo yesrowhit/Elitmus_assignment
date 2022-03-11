@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=SF+Pro+Text&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=SF+Pro+Display&display=swap" rel="stylesheet" />
+    <link href="{{ url_for( 'static',filename='contacts2.css' ) }}" rel="stylesheet" />
+
+
+    <title>contacts</title>
+</head>
+
+<body>
+
+        <div class="Right_part">
+            <h3>{{uemail}}</h3>
+            <form action="/logout" method="post">
+                <button type="submit" class="btn">Logout</button>
+            </form>
+        </div>
+
+    <div class="center">
+        <form method="post" action="/add_con">
+            <input class="new_cont"  type="text" name="cname" id="cname" placeholder='Enter the Name 'required>
+            <input class="new_cont"  type="number" name="cnumber" id="cnumber" placeholder='Enter the Number ' maxlength = "12" required>
+            <input class="new_cont"  type="text" name="cmail" id="cmail" placeholder='Enter the Email ' required>
+            <button class="add_btn" type="submit">Add Contact </button>
+        </form>       
+    </div>
+    <div class="cont">
+        <h3 class="title"> List of contacts</h3>
+    
+            <div class="center-stuff">
+                <table id="data" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Number</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for val in contacts %}
+                        <tr>
+                            <td style="padding: 2%; width:120px;">{{val['name']}}</td>
+                            <td style="padding: 2%; width:120px;">{{val['number']}}</td>
+                            <td style="height:40px; width:20px">{{val['mail']}}</td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>   
+
+    </div>
+
+</body>
+
+</html>
